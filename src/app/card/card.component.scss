@@ -6,7 +6,6 @@
   flex-direction: column;
   align-items: center;
   color: #226089;
-  font-size: 600;
 }
 
 .grid {
@@ -25,9 +24,17 @@
   flex-wrap: wrap;
   // margin-right: 10px;
   justify-content: space-around;
+  .for-grid {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+  }
 }
 
 .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex: 1 1 100%;
   // padding: 0.5em;
   background: linear-gradient(
@@ -86,7 +93,7 @@
 }
 .card-author {
   width: 100%;
-
+  font-weight: 600;
   display: flex;
   // align-items: center;
   justify-content: center;

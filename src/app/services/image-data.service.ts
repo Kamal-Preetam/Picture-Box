@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import { appProperties } from 'src/properties'
 // import 'rxjs/add/operator/catch'
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class ImageDataService {
   constructor(private http: HttpClient) {}
   //Geting data from the API
   getData(): Observable<any> {
-    const url = 'https://picsum.photos/v2/list?page=2&limit=100';
+    const url = appProperties.url;
     return this.http.get<any>(url).pipe(catchError(this.handleError));
   }
   //Error Handling

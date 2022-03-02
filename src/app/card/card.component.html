@@ -1,3 +1,4 @@
+<!-- cards are only displayed if there are no errors in the code -->
 <div class="card-container" *ngIf="!errorMessage">
 
   <div class="paginate-container">
@@ -30,17 +31,22 @@
       >
         <div class="item">
           <div class="item-inner">
-            <!-- if the image, id or author name is missing, the APP uses the default values-->
-            <div><img class="image" src="{{ image.download_url? image.download_url: 'https://picsum.photos/' }}" /></div>
-            <div class="card-id">{{ (image.id) ? image.id:"ID failed to generate" }}</div>
-            <div class="card-author">{{ image.author ? image.author: "Author Name is missing" }}</div>
-          </div>
+            <!-- if the image is missing, No image found is displayed-->
+            <div><img class="image" src="{{ image.download_url? image.download_url: 'src/assets/img/No-image-found.jpg' }}" /></div>
+            <div class="card-details">
+               <!-- if the ID is missing, the APP uses the default values-->
+              <div class="card-id">{{ (image.id) ? image.id:"ID failed to generate" }}</div>
+               <!-- if the Author is missing, the APP uses the default values-->
+              <div class="card-author">{{ image.author ? image.author: "Author Name is missing" }}</div>
+            </div>
+         </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- This part is rendered if the app has any errors -->
 <div class="error-message" *ngIf="errorMessage">
   {{errorMessage}}
 </div>

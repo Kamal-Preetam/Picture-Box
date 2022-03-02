@@ -8,31 +8,32 @@ import { ImageDataService } from '../services/image-data.service';
 })
 export class CardComponent {
   data: Array<any>;
-  totalRecords!: String;
+  totalRecords: String = "";
   page: Number = 1;
   errorMessage: string | undefined = undefined;
-  constructor(private imageData: ImageDataService) {
+  constructor(private imageDataService: ImageDataService) {
     this.data = new Array<any>();
   }
 
+  ngOnInit() {
+    // calling the function to load images when the page loads
+    this.getImages();
+  }
+  // getImages: subscribes to the ImageDataService and gets the data from the api to display in the UI.
   getImages() {
     // Retrives the data from the image-data service
-    this.imageData.getData().subscribe(
+    this.imageDataService.getData().subscribe(
       (data) => {
-        console.log(data);
         this.data = data;
-        console.log(this.data);
         this.totalRecords = data.length;
       },
       (error) => {
+        // Displaying the error on the UI
         console.log(error);
         this.errorMessage = error;
       }
     );
   }
 
-  ngOnInit() {
-    // calling the function to load images on 1st page load
-    this.getImages();
-  }
+
 }
